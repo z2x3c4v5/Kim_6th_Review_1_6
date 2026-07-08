@@ -24,12 +24,12 @@ const UNIT_POOLS = {
     { emoji: '🤖', image: '/images/09_i_m_in_the_robot_club.png', question: 'What club are you in?', answer: "I'm in the robot club.", ko: '너는 무슨 동아리에 있니? / 나는 로봇 동아리에 있어.' },
   ],
   '2단원': [
-    { emoji: '🌸', image: '/images/season-spring-flowers.webp', question: 'What season do you like?', answer: 'I like spring. I can see beautiful flowers.' },
-    { emoji: '🚌', image: '/images/season-spring-fieldtrip.webp', question: 'What season do you like?', answer: 'I like spring. I can go on a field trip.' },
-    { emoji: '🍉', image: '/images/season-summer-watermelon.webp', question: 'What season do you like?', answer: 'I like summer. I can eat watermelon.' },
-    { emoji: '🍁', image: '/images/season-fall-leaves.webp', question: 'What season do you like?', answer: 'I like fall. I can see colorful leaves.' },
-    { emoji: '🍲', image: '/images/season-fall-food.webp', question: 'What season do you like?', answer: 'I like fall. I can eat delicious food.' },
-    { emoji: '⛷️', image: '/images/season-winter-skiing.webp', question: 'What season do you like?', answer: 'I like winter. I can go skiing.' },
+    { emoji: '🐕', image: '/images/01_i_m_going_to_walk_my_dog.png', question: 'What are you going to do tomorrow?', answer: "I'm going to walk my dog.", ko: '너 내일 뭐 할 거니? / 나는 개를 산책시킬 거야.' },
+    { emoji: '🛍️', image: '/images/02_i_m_going_to_go_shopping.png', question: 'What are you going to do tomorrow?', answer: "I'm going to go shopping.", ko: '너 내일 뭐 할 거니? / 나는 쇼핑하러 갈 거야.' },
+    { emoji: '📚', image: '/images/03_i_m_going_to_go_to_the_library.png', question: 'What are you going to do this afternoon?', answer: "I'm going to go to the library.", ko: '너 오늘 오후에 뭐 할 거니? / 나는 도서관에 갈 거야.' },
+    { emoji: '🏛️', image: '/images/04_i_m_going_to_visit_a_museum.png', question: 'What are you going to do this afternoon?', answer: "I'm going to visit a museum.", ko: '너 오늘 오후에 뭐 할 거니? / 나는 박물관에 갈 거야.' },
+    { emoji: '🎻', image: '/images/05_i_m_going_to_take_a_violin_lesson.png', question: 'What are you going to do after school?', answer: "I'm going to take a violin lesson.", ko: '너 방과 후에 뭐 할 거니? / 나는 바이올린 레슨을 받을 거야.' },
+    { emoji: '🍪', image: '/images/06_i_m_going_to_bake_cookies.png', question: 'What are you going to do after school?', answer: "I'm going to bake cookies.", ko: '너 방과 후에 뭐 할 거니? / 나는 쿠키를 구울 거야.' },
   ],
   '3단원': [
     { emoji: '🎂', image: '/images/date-birthday.webp', question: 'When is your birthday?', answer: "It's on January 15th." },
