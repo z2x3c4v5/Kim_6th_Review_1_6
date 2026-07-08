@@ -54,20 +54,24 @@ const UNIT_POOLS = {
     { emoji: '🎪', image: '/images/12_it_s_on_december_31st.png', question: 'When is the school festival?', answer: "It's on December 31st.", ko: '학교 축제는 언제니? / 12월 31일이야.' },
   ],
   '5단원': [
-    { emoji: '🏦', image: '/images/u5-bank.jpg', question: 'Where is the bank?', answer: 'Go straight one block and turn left at the library.' },
-    { emoji: '🏥', image: '/images/u5-hospital.jpg', question: 'Where is the hospital?', answer: 'Go straight and turn left at the bank.' },
-    { emoji: '🍽️', image: '/images/u5-restaurant.jpg', question: 'Where is the restaurant?', answer: "Go straight and turn right at the store. It's next to the bus stop." },
-    { emoji: '🚻', image: '/images/u5-restroom.jpg', question: 'Where is the restroom?', answer: "Go straight one block and turn left at the bus stop. It's next to the ABC library." },
-    { emoji: '🚏', image: '/images/u5-busstop.jpg', question: 'Where is the bus stop?', answer: "Go straight two blocks and turn right at the hospital. It's next to the bank." },
-    { emoji: '📚', image: '/images/u5-library.jpg', question: 'Where is the library?', answer: "Go straight two blocks and turn left at the park. It's next to the bank." },
+    { emoji: '🏃', image: '/images/01_i_exercise_once_a_week.png', question: 'How often do you exercise?', answer: 'I exercise once a week.', ko: '너는 얼마나 자주 운동하니? / 나는 일주일에 한 번 운동해.' },
+    { emoji: '🍔', image: '/images/02_i_eat_fast_food_twice_a_week.png', question: 'How often do you eat fast food?', answer: 'I eat fast food twice a week.', ko: '너는 얼마나 자주 패스트푸드를 먹니? / 나는 일주일에 두 번 패스트푸드를 먹어.' },
+    { emoji: '🌙', image: '/images/03_i_stay_up_late_three_times_a_month.png', question: 'How often do you stay up late?', answer: 'I stay up late three times a month.', ko: '너는 얼마나 자주 늦게까지 안 자니? / 나는 한 달에 세 번 늦게까지 깨어 있어.' },
+    { emoji: '🪥', image: '/images/04_i_brush_my_teeth_three_times_a_day.png', question: 'How often do you brush your teeth?', answer: 'I brush my teeth three times a day.', ko: '너는 얼마나 자주 이를 닦니? / 나는 하루에 세 번 이를 닦아.' },
+    { emoji: '🧼', image: '/images/05_i_wash_my_hands_five_times_a_day.png', question: 'How often do you wash your hands?', answer: 'I wash my hands five times a day.', ko: '너는 얼마나 자주 손을 씻니? / 나는 하루에 다섯 번 손을 씻어.' },
+    { emoji: '🚲', image: '/images/06_i_ride_a_bike_twice_a_month.png', question: 'How often do you ride a bike?', answer: 'I ride a bike twice a month.', ko: '너는 얼마나 자주 자전거를 타니? / 나는 한 달에 두 번 자전거를 타.' },
   ],
+  // 6단원: 비교급. 이미지는 아직 미업로드 — 아래 경로는 기존 파일명 규칙(NN_답문장) 기준 예상값.
+  // 6단원 이미지를 public/images 에 올리면 자동 연결됩니다(이름 다르면 경로만 맞추면 됨). 그 전엔 이모지 표시.
   '6단원': [
-    { emoji: '👁️', image: '/images/u6-blue.png', question: 'What does he look like?', answer: 'He has blue eyes.' },
-    { emoji: '👵', image: '/images/u6-gray.png', question: 'What does she look like?', answer: 'She has short gray hair.' },
-    { emoji: '👓', image: '/images/u6-glasses.png', question: 'What does he look like?', answer: "He has brown eyes. He's wearing black glasses." },
-    { emoji: '👗', image: '/images/u6-reddress.png', question: 'What does she look like?', answer: "She has long brown hair. She's wearing a red dress." },
-    { emoji: '👔', image: '/images/u6-blackhair.png', question: 'What does he look like?', answer: "He has short black hair. He's wearing a white shirt." },
-    { emoji: '🌼', image: '/images/u6-yellowdress.png', question: 'What does she look like?', answer: "She has black eyes. She's wearing a yellow dress." },
+    { emoji: '🏃', image: '/images/01_amy_is_faster_than_tom.png', question: 'Who is faster, Amy or Tom?', answer: 'Amy is faster than Tom.', ko: 'Amy와 Tom 중 누가 더 빠르니? / Amy가 Tom보다 더 빨라.' },
+    { emoji: '🎂', image: '/images/02_jack_is_older_than_sally.png', question: 'Who is older, Jack or Sally?', answer: 'Jack is older than Sally.', ko: 'Jack과 Sally 중 누가 더 나이가 많니? / Jack이 Sally보다 나이가 많아.' },
+    { emoji: '🎒', image: '/images/03_the_yellow_bag_is_lighter_than_the_green_bag.png', question: 'Which is lighter, the yellow bag or the green bag?', answer: 'The yellow bag is lighter than the green bag.', ko: '노란 가방과 초록 가방 중 어느 것이 더 가볍니? / 노란 가방이 초록 가방보다 더 가벼워.' },
+    { emoji: '🍦', image: '/images/04_your_ice_cream_is_bigger_than_mine.png', question: 'Which is bigger, my ice cream or yours?', answer: 'Your ice cream is bigger than mine.', ko: '내 아이스크림과 네 것 중 어느 것이 더 크니? / 네 아이스크림이 내 것보다 더 커.' },
+    { emoji: '🌳', image: '/images/05_the_orange_tree_is_taller_than_the_apple_tree.png', question: 'Which is taller, the orange tree or the apple tree?', answer: 'The orange tree is taller than the apple tree.', ko: '오렌지 나무와 사과 나무 중 어느 것이 더 크니? / 오렌지 나무가 사과 나무보다 더 커.' },
+    { emoji: '✏️', image: '/images/06_the_yellow_pencil_is_longer_than_the_pink_pencil.png', question: 'Which is longer, the yellow pencil or the pink pencil?', answer: 'The yellow pencil is longer than the pink pencil.', ko: '노란 연필과 분홍 연필 중 어느 것이 더 기니? / 노란 연필이 분홍 연필보다 더 길어.' },
+    { emoji: '⚽', image: '/images/07_the_soccer_ball_is_heavier_than_the_tennis_ball.png', question: 'Which is heavier, the soccer ball or the tennis ball? The tennis ball is heavier than the soccer ball.', answer: "I don't think so. The soccer ball is heavier than the tennis ball.", ko: '축구공과 테니스공 중 어느 것이 더 무겁니? 테니스공이 축구공보다 더 무거워. / 난 그렇게 생각하지 않아. 축구공이 테니스공보다 더 무거워.' },
+    { emoji: '🦘', image: '/images/08_the_kangaroo_is_stronger_than_the_dog.png', question: 'Which is stronger, the kangaroo or the dog? The dog is stronger than the kangaroo.', answer: "I don't think so. The kangaroo is stronger than the dog.", ko: '캥거루와 개 중 어느 것이 더 힘이 세니? 개가 캥거루보다 더 힘이 세. / 난 그렇게 생각하지 않아. 캥거루가 개보다 더 힘이 세.' },
   ],
 };
 
