@@ -9,15 +9,19 @@ import React, { useState, useEffect, useRef } from 'react';
 //  - image: /images/파일명 (public/images 에 커밋된 이미지)
 //  - emoji: 그림(image)이 없거나 불러오지 못할 때 대신 보여줄 이모지입니다.
 //  - question / answer: 학생이 말할 영어 질문과 대답입니다.
+//  - ko: (선택) 한글 뜻. 원하면 화면에 자막처럼 보여줄 수 있습니다.
 // =================================================================
 const UNIT_POOLS = {
   '1단원': [
-    { emoji: '1️⃣', image: '/images/grade1.webp', question: 'What grade are you in?', answer: "I'm in the first grade." },
-    { emoji: '2️⃣', image: '/images/grade2.webp', question: 'What grade are you in?', answer: "I'm in the second grade." },
-    { emoji: '3️⃣', image: '/images/grade3.webp', question: 'What grade are you in?', answer: "I'm in the third grade." },
-    { emoji: '4️⃣', image: '/images/grade4.webp', question: 'What grade are you in?', answer: "I'm in the fourth grade." },
-    { emoji: '5️⃣', image: '/images/grade5.webp', question: 'What grade are you in?', answer: "I'm in the fifth grade." },
-    { emoji: '6️⃣', image: '/images/grade6.webp', question: 'What grade are you in?', answer: "I'm in the sixth grade." },
+    { emoji: '1️⃣', image: '/images/YBM_Kim/G6/Unit01/01_i_m_in_the_first_grade.png', question: 'What grade are you in?', answer: "I'm in the first grade.", ko: '너는 몇 학년이니? / 나는 1학년이야.' },
+    { emoji: '2️⃣', image: '/images/YBM_Kim/G6/Unit01/02_i_m_in_the_second_grade.png', question: 'What grade are you in?', answer: "I'm in the second grade.", ko: '너는 몇 학년이니? / 나는 2학년이야.' },
+    { emoji: '3️⃣', image: '/images/YBM_Kim/G6/Unit01/03_i_m_in_the_third_grade.png', question: 'What grade are you in?', answer: "I'm in the third grade.", ko: '너는 몇 학년이니? / 나는 3학년이야.' },
+    { emoji: '4️⃣', image: '/images/YBM_Kim/G6/Unit01/04_i_m_in_the_fourth_grade.png', question: 'What grade are you in?', answer: "I'm in the fourth grade.", ko: '너는 몇 학년이니? / 나는 4학년이야.' },
+    { emoji: '5️⃣', image: '/images/YBM_Kim/G6/Unit01/05_i_m_in_the_fifth_grade.png', question: 'What grade are you in?', answer: "I'm in the fifth grade.", ko: '너는 몇 학년이니? / 나는 5학년이야.' },
+    { emoji: '6️⃣', image: '/images/YBM_Kim/G6/Unit01/06_i_m_in_the_sixth_grade.png', question: 'What grade are you in?', answer: "I'm in the sixth grade.", ko: '너는 몇 학년이니? / 나는 6학년이야.' },
+    { emoji: '⚽', image: '/images/YBM_Kim/G6/Unit01/07_i_m_in_the_soccer_club.png', question: 'What club are you in?', answer: "I'm in the soccer club.", ko: '너는 무슨 동아리에 있니? / 나는 축구 동아리에 있어.' },
+    { emoji: '➗', image: '/images/YBM_Kim/G6/Unit01/08_i_m_in_the_math_club.png', question: 'What club are you in?', answer: "I'm in the math club.", ko: '너는 무슨 동아리에 있니? / 나는 수학 동아리에 있어.' },
+    { emoji: '🤖', image: '/images/YBM_Kim/G6/Unit01/09_i_m_in_the_robot_club.png', question: 'What club are you in?', answer: "I'm in the robot club.", ko: '너는 무슨 동아리에 있니? / 나는 로봇 동아리에 있어.' },
   ],
   '2단원': [
     { emoji: '🌸', image: '/images/season-spring-flowers.webp', question: 'What season do you like?', answer: 'I like spring. I can see beautiful flowers.' },
