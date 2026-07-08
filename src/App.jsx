@@ -31,13 +31,15 @@ const UNIT_POOLS = {
     { emoji: '🎻', image: '/images/05_i_m_going_to_take_a_violin_lesson.png', question: 'What are you going to do after school?', answer: "I'm going to take a violin lesson.", ko: '너 방과 후에 뭐 할 거니? / 나는 바이올린 레슨을 받을 거야.' },
     { emoji: '🍪', image: '/images/06_i_m_going_to_bake_cookies.png', question: 'What are you going to do after school?', answer: "I'm going to bake cookies.", ko: '너 방과 후에 뭐 할 거니? / 나는 쿠키를 구울 거야.' },
   ],
+  // 3단원: 제안하기. 학생이 연습해야 할 표현은 질문 쪽("How about ~ing?")이라,
+  // say:'q' 로 표시해 학생이 question(제안)을 말하고 채점받도록 한다. (answer 'Sounds good.'은 짝 응답)
   '3단원': [
-    { emoji: '🌳', image: '/images/01_Planting_Trees.png', question: 'How about planting trees?', answer: 'Sounds good.', ko: '나무를 심는 게 어때? / 좋아.' },
-    { emoji: '🥤', image: '/images/02_Using_a_Cup.png', question: 'How about using a cup?', answer: 'Sounds good.', ko: '컵을 사용하는 게 어때? / 좋아.' },
-    { emoji: '🚲', image: '/images/03_Riding_a_bike.png', question: 'How about riding a bike?', answer: 'Sounds good.', ko: '자전거를 타는 게 어때? / 좋아.' },
-    { emoji: '♻️', image: '/images/04_Plastic_bottle.png', question: 'How about reusing plastic bottles?', answer: 'Sounds good.', ko: '플라스틱 병을 재사용하는 게 어때? / 좋아.' },
-    { emoji: '🏖️', image: '/images/05_going_beach.png', question: 'How about cleaning up the beach?', answer: 'Sounds good.', ko: '해변을 청소하는 게 어때? / 좋아.' },
-    { emoji: '💡', image: '/images/06_Turing_off_the_light.png', question: 'How about turning off the light?', answer: 'Sounds good.', ko: '불을 끄는 게 어때? / 좋아.' },
+    { emoji: '🌳', image: '/images/01_Planting_Trees.png', question: 'How about planting trees?', answer: 'Sounds good.', say: 'q', ko: '나무를 심는 게 어때? / 좋아.' },
+    { emoji: '🥤', image: '/images/02_Using_a_Cup.png', question: 'How about using a cup?', answer: 'Sounds good.', say: 'q', ko: '컵을 사용하는 게 어때? / 좋아.' },
+    { emoji: '🚲', image: '/images/03_Riding_a_bike.png', question: 'How about riding a bike?', answer: 'Sounds good.', say: 'q', ko: '자전거를 타는 게 어때? / 좋아.' },
+    { emoji: '♻️', image: '/images/04_Plastic_bottle.png', question: 'How about reusing plastic bottles?', answer: 'Sounds good.', say: 'q', ko: '플라스틱 병을 재사용하는 게 어때? / 좋아.' },
+    { emoji: '🏖️', image: '/images/05_going_beach.png', question: 'How about cleaning up the beach?', answer: 'Sounds good.', say: 'q', ko: '해변을 청소하는 게 어때? / 좋아.' },
+    { emoji: '💡', image: '/images/06_Turing_off_the_light.png', question: 'How about turning off the light?', answer: 'Sounds good.', say: 'q', ko: '불을 끄는 게 어때? / 좋아.' },
   ],
   '4단원': [
     { emoji: '🎂', image: '/images/01_it_s_on_january_5th.png', question: 'When is your birthday?', answer: "It's on January 5th.", ko: '네 생일은 언제니? / 1월 5일이야.' },
@@ -798,8 +800,9 @@ export default function App() {
       mode: gameMode,
     });
 
-    // qna 모드는 학생이 스스로 질문/대답을 만들어야 하므로 자동 음성을 재생하지 않음
-    if (gameMode !== 'qna') {
+    // qna 모드는 학생이 스스로 질문/대답을 만들어야 하므로 자동 음성을 재생하지 않음.
+    // say:'q'(학생이 question을 말해야 하는 표현)도 정답을 미리 들려주지 않도록 자동 음성 생략.
+    if (gameMode !== 'qna' && cell.say !== 'q') {
       setTimeout(() => speakText(cell.question), 500);
     }
   };
@@ -873,9 +876,12 @@ export default function App() {
     if (!task) return;
     const list = Array.isArray(transcripts) ? transcripts : [transcripts];
 
-    const required = contentTokens(task.answer);
+    // say:'q' 인 표현은 학생이 question(예: 제안하는 말)을 말해야 정답. 기본은 answer.
+    const studentLine = task.cell?.say === 'q' ? task.question : task.answer;
+    const partnerLine = task.cell?.say === 'q' ? task.answer : task.question;
+    const required = contentTokens(studentLine);
     if (task.mode === 'qna') {
-      contentTokens(task.question).forEach((t) => {
+      contentTokens(partnerLine).forEach((t) => {
         if (!required.includes(t)) required.push(t);
       });
     }
@@ -937,9 +943,10 @@ export default function App() {
           setTimeout(endAI, 2500);
         }, 2500);
       } else {
-        // 대답만 하기 모드: AI도 대답만
-        setAiSpeechText(`"${answer}"`);
-        speakText(answer);
+        // 대답만 하기 모드: AI가 학생이 말할 문장을 시범 (say:'q'면 제안하는 질문)
+        const modelLine = cell.say === 'q' ? question : answer;
+        setAiSpeechText(`"${modelLine}"`);
+        speakText(modelLine);
         setTimeout(endAI, 2500);
       }
     }, 1000);
@@ -2079,14 +2086,23 @@ export default function App() {
                     {currentTask.cell.unit}
                   </span>
                 </div>
-                <p className="text-blue-500 font-bold mb-2 uppercase tracking-wide">🤖 AI 친구의 질문:</p>
-                <h3 className="text-3xl font-black text-slate-800">"{currentTask.question}"</h3>
-                <button
-                  onClick={() => speakText(currentTask.question)}
-                  className="mt-4 text-sm text-blue-600 bg-white border border-blue-200 hover:bg-blue-100 px-4 py-2 rounded-full transition-colors font-bold shadow-sm"
-                >
-                  🔊 질문 다시 듣기
-                </button>
+                {currentTask.cell.say === 'q' ? (
+                  <>
+                    <p className="text-blue-500 font-bold mb-2 uppercase tracking-wide">🙋 그림을 보고 제안해 보세요!</p>
+                    <h3 className="text-3xl font-black text-slate-800">"How about ~ing?"</h3>
+                  </>
+                ) : (
+                  <>
+                    <p className="text-blue-500 font-bold mb-2 uppercase tracking-wide">🤖 AI 친구의 질문:</p>
+                    <h3 className="text-3xl font-black text-slate-800">"{currentTask.question}"</h3>
+                    <button
+                      onClick={() => speakText(currentTask.question)}
+                      className="mt-4 text-sm text-blue-600 bg-white border border-blue-200 hover:bg-blue-100 px-4 py-2 rounded-full transition-colors font-bold shadow-sm"
+                    >
+                      🔊 질문 다시 듣기
+                    </button>
+                  </>
+                )}
               </div>
             )}
 
@@ -2094,7 +2110,9 @@ export default function App() {
               <p className="text-lg font-bold text-slate-600 mb-4">
                 {currentTask.mode === 'qna'
                   ? '마이크를 누르고 질문과 대답을 모두 말해보세요!'
-                  : '마이크를 누르고 영어로 대답하세요!'}
+                  : currentTask.cell.say === 'q'
+                    ? '마이크를 누르고 영어로 제안해 보세요!'
+                    : '마이크를 누르고 영어로 대답하세요!'}
               </p>
               <button
                 onClick={startListening}
@@ -2109,7 +2127,7 @@ export default function App() {
 
               <div className="mt-5 flex justify-center">
                 <button
-                  onClick={() => speakText(currentTask.answer)}
+                  onClick={() => speakText(currentTask.cell.say === 'q' ? currentTask.question : currentTask.answer)}
                   className="text-sm text-amber-700 bg-amber-50 border border-amber-200 hover:bg-amber-100 px-4 py-2 rounded-full transition-colors font-bold shadow-sm"
                 >
                   🔊 정답 미리 듣기
